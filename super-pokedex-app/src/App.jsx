@@ -5,7 +5,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Searchbar from "./components/Searchbar";
 import Pokedex from "./components/Pokedex";
-import { fetchPokemonData, singlePokemon } from "./api";
+import { fetchPokemonData, fetchAllPokemonData } from "./api";
 
 function App() {
   /* These lines are using the useState hook to initialize two state
@@ -32,6 +32,13 @@ function App() {
 
   const deletePokemon = (name) => {
     setPokemons(pokemons.filter((pokemon) => pokemon.name !== name));
+  }
+
+  const fetchAllPokemons = async () => {
+    setLoading(true);
+    const allPokemons = await fetchAllPokemonData();
+    setPokemons(allPokemons);
+    setLoading(false);
   }
 
   console.log(pokemons)
@@ -61,6 +68,7 @@ function App() {
         loading={loading} 
         deletePokemon={deletePokemon}  
       />
+      <button onClick={fetchAllPokemons}>Fetch All Pokémon</button>
     </div>
   );
 }

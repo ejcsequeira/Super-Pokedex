@@ -29,8 +29,7 @@ const Searchbar = ({search, setSearch, setPokemons, lowerCaseSearch, setlowerCas
             </div>
             <div className="searchbar-btn">
                 <button onClick={onButtonClickHandler}>Search</button>
-            </div>
-           
+            </div>           
         </div>
     )
 }
