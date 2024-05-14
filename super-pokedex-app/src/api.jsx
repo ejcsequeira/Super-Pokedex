@@ -19,3 +19,19 @@ export const singlePokemon = async (pokemonName) => {
         console.log(error);
     }
 };
+
+export const fetchAllPokemonNames = async () => {
+    try{
+        const response = await fetch(`${Pokemon_API_URL}?limit=1000`);
+        const data = await response.json();
+        return data.resuslts.map(pokemon =>pokemon.name);
+    }
+    catch(error) {
+        console.log(error);
+    }
+};
+
+export const fetchAllPokemonData = async () => {
+    const allPokemonNames = await fetchAllPokemonNames();
+    return fetchAllPokemonData(allPokemonNames);
+};
