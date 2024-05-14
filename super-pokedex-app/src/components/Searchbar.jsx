@@ -1,15 +1,18 @@
 import { singlePokemon } from "../api";
 
-const Searchbar = ({search, setSearch, setPokemons}) => {
+const Searchbar = ({search, setSearch, setPokemons, lowerCaseSearch, setlowerCaseSearch}) => {
     
     
 
-    const onChangeHandler= (e) =>{
-        setSearch(e.target.value)
-    }
+    const onChangeHandler = (e) =>{
+        /* setSearch(e.target.value) */
+        const newValue = e.target.value;
+        setSearch(newValue);
+        setlowerCaseSearch(newValue.toLowerCase());
+    };
 
     const onButtonClickHandler = () => {
-        singlePokemon(search).then((data) => {
+        singlePokemon(lowerCaseSearch).then((data) => {
             setPokemons((prevPokemons) => (
             [...prevPokemons, data]
             ))

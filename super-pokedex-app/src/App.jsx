@@ -15,6 +15,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [pokemons, setPokemons] = useState([]);
   const [search, setSearch] = useState("");
+  const [lowerCaseSearch, setlowerCaseSearch] = useState("");
 
 
   const initialPokemons = ["charmander", "ditto", "squirtle"];
@@ -29,12 +30,16 @@ function App() {
     
   }, []);
 
+  const deletePokemon = (name) => {
+    setPokemons(pokemons.filter((pokemon) => pokemon.name !== name));
+  }
+
   console.log(pokemons)
 
   if(loading){
     return (
       <div>
-        loading ...
+        Loading the beast ...
       </div>
     )
   }
@@ -44,8 +49,18 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <Searchbar setPokemons={setPokemons} search={search} setSearch={setSearch}/>
-      <Pokedex pokemons={pokemons} loading={loading} />
+      <Searchbar
+        setPokemons={setPokemons}
+        search={search}
+        setSearch={setSearch} 
+        lowerCaseSearch={lowerCaseSearch}
+        setlowerCaseSearch={setlowerCaseSearch}  
+      />
+      <Pokedex 
+        pokemons={pokemons} 
+        loading={loading} 
+        deletePokemon={deletePokemon}  
+      />
     </div>
   );
 }
