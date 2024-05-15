@@ -1,37 +1,19 @@
 const Pokemon_API_URL = "https://pokeapi.co/api/v2/pokemon";
 
-
 export const fetchPokemonData = async (arr) => {
-    const promises = arr.map((pokemon) =>
-        fetch(`${Pokemon_API_URL}/${pokemon}`).then((res) =>res.json())
-    );
+  const promises = arr.map((pokemon) =>
+    fetch(`${Pokemon_API_URL}/${pokemon}`).then((res) => res.json())
+  );
 
-    const pokemonData = await Promise.all(promises);
-    return pokemonData;
+  const pokemonData = await Promise.all(promises);
+  return pokemonData;
 };
 
 export const singlePokemon = async (pokemonName) => {
-    try{
-        const response =await fetch(`${Pokemon_API_URL}/${pokemonName}`);
-        return await response.json();
-    }
-    catch(error) {
-        console.log(error);
-    }
-};
-
-export const fetchAllPokemonNames = async () => {
-    try{
-        const response = await fetch(`${Pokemon_API_URL}?limit=1000`);
-        const data = await response.json();
-        return data.resuslts.map(pokemon =>pokemon.name);
-    }
-    catch(error) {
-        console.log(error);
-    }
-};
-
-export const fetchAllPokemonData = async () => {
-    const allPokemonNames = await fetchAllPokemonNames();
-    return fetchAllPokemonData(allPokemonNames);
+  try {
+    const response = await fetch(`${Pokemon_API_URL}/${pokemonName}`);
+    return await response.json();
+  } catch (error) {
+    console.log(error);
+  }
 };
