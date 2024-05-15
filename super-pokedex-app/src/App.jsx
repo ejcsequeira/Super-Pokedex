@@ -1,11 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
-/* import { getPokemonData, getPokemons } from "./api"; */
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Searchbar from "./components/Searchbar";
 import Pokedex from "./components/Pokedex";
-import { fetchPokemonData, fetchAllPokemonData } from "./api";
+import { fetchPokemonData } from "./api";
 
 function App() {
   /* These lines are using the useState hook to initialize two state
@@ -17,41 +16,22 @@ function App() {
   const [search, setSearch] = useState("");
   const [lowerCaseSearch, setlowerCaseSearch] = useState("");
 
-
-  const initialPokemons = ["charmander", "ditto", "squirtle"];
-
-
   useEffect(() => {
-    fetchPokemonData(initialPokemons).then((data) =>{
-      setPokemons(data)
-      setLoading(false)
+    fetchPokemonData(pokemons).then((data) => {
+      setPokemons(data);
+      setLoading(false);
     });
-
-    
   }, []);
+
+  console.log(pokemons);
 
   const deletePokemon = (name) => {
     setPokemons(pokemons.filter((pokemon) => pokemon.name !== name));
+  };
+
+  if (loading) {
+    return <div>Loading the beast ...</div>;
   }
-
-  const fetchAllPokemons = async () => {
-    setLoading(true);
-    const allPokemons = await fetchAllPokemonData();
-    setPokemons(allPokemons);
-    setLoading(false);
-  }
-
-  console.log(pokemons)
-
-  if(loading){
-    return (
-      <div>
-        Loading the beast ...
-      </div>
-    )
-  }
-
-  
 
   return (
     <div className="App">
@@ -59,16 +39,15 @@ function App() {
       <Searchbar
         setPokemons={setPokemons}
         search={search}
-        setSearch={setSearch} 
+        setSearch={setSearch}
         lowerCaseSearch={lowerCaseSearch}
-        setlowerCaseSearch={setlowerCaseSearch}  
+        setlowerCaseSearch={setlowerCaseSearch}
       />
-      <Pokedex 
-        pokemons={pokemons} 
-        loading={loading} 
-        deletePokemon={deletePokemon}  
+      <Pokedex
+        pokemons={pokemons}
+        loading={loading}
+        deletePokemon={deletePokemon}
       />
-      <button onClick={fetchAllPokemons}>Fetch All Pokémon</button>
     </div>
   );
 }
