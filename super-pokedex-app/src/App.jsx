@@ -1,9 +1,11 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Searchbar from "./components/Searchbar";
 import Pokedex from "./components/Pokedex";
+import PokemonDetail from "./components/PokemonDetail";
 import { fetchPokemonData } from "./api";
 
 function App() {
@@ -18,15 +20,18 @@ function App() {
 
   useEffect(() => {
     fetchPokemonData(pokemons).then((data) => {
+      
       setPokemons(data);
       setLoading(false);
     });
   }, []);
 
-  console.log(pokemons);
+
+
 
   const deletePokemon = (name) => {
     setPokemons(pokemons.filter((pokemon) => pokemon.name !== name));
+
   };
 
   if (loading) {
@@ -34,21 +39,35 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <Navbar />
-      <Searchbar
-        setPokemons={setPokemons}
-        search={search}
-        setSearch={setSearch}
-        lowerCaseSearch={lowerCaseSearch}
-        setlowerCaseSearch={setlowerCaseSearch}
-      />
-      <Pokedex
-        pokemons={pokemons}
-        loading={loading}
-        deletePokemon={deletePokemon}
-      />
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Searchbar
+                  setPokemons={setPokemons}
+                  search={search}
+                  setSearch={setSearch}
+                  lowerCaseSearch={lowerCaseSearch}
+                  setlowerCaseSearch={setlowerCaseSearch}
+                />
+                <Pokedex
+                  pokemons={pokemons}
+                  loading={loading}
+                  deletePokemon={deletePokemon}
+                />
+              </>
+            }
+          />
+          <Route path="/pokemon/:name" element={<PokemonDetail
+            pokemons={pokemons}
+          />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

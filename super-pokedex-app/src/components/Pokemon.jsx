@@ -1,5 +1,5 @@
 import React from "react";
-/* import { Link } from "react-router-dom"; */
+import { Link } from "react-router-dom";
 
 const Pokemon = (props) => {
   const { pokemon, deletePokemon } = props;
@@ -17,9 +17,9 @@ const Pokemon = (props) => {
       <button onClick={handleDelete} className="btn-delete">
         🗑
       </button>
-      {/* <Link to={`/UpDate/${pokemon.name}/edit`} className="btn-edit">
-        update
-      </Link> */}
+      <Link to={`/pokemon/${pokemon.name}`} className="btn-details">
+        Details
+      </Link>
     </div>
   );
 };
