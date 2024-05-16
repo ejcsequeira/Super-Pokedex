@@ -21,6 +21,7 @@ function App() {
 
 
   const addPokemon = (pokemon) => {
+
     setPokemons([...pokemons, pokemon]);
   };
 
@@ -30,11 +31,11 @@ function App() {
     setPokemons(pokemons.filter((pokemon) => pokemon.id !== id));
   };
 
- 
+
 
   const toggleFavorite = (pokemon) => {
     setPokemons(pokemons.map(p => {
-      if(p.id === pokemon.id) {
+      if (p.id === pokemon.id) {
         return {
           ...p,
           isFavorite: !p.isFavorite
@@ -79,7 +80,7 @@ function App() {
             path="/favorites"
             element={
               <Favorites
-                favorites={pokemons.filter(pokemon => pokemon.isFavorite)}   
+                favorites={pokemons.filter(pokemon => pokemon.isFavorite)}
                 showEditPokemon={true}
                 deletePokemon={deletePokemon}
                 toggleFavorite={toggleFavorite}

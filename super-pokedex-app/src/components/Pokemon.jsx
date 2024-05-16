@@ -36,6 +36,8 @@ const Pokemon = ({
     toggleFavorite(pokemon);
   };
 
+  console.log(pokemon)
+
   return (
     <>
       <div className="pokemon-card">
@@ -50,7 +52,7 @@ const Pokemon = ({
         <button onClick={handleFavorite} className="btn-favorite">
           {pokemon.isFavorite ? "★" : "☆"}
         </button>
-        <Link to={`/pokemon/${pokemon.name}`} className="btn-details">
+        <Link  to={`/pokemon/${pokemon.name}`} state={{poke: pokemon}} className="btn-details">
           Details
         </Link>
       </div>
