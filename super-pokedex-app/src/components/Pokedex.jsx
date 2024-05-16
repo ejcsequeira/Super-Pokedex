@@ -1,30 +1,21 @@
 import React from "react";
 import Pokemon from "./Pokemon";
 
-const Pokedex = (props) => {
-  const { pokemons, loading, deletePokemon } = props;
-
+const Pokedex = ({ pokemons, deletePokemon, addFavorite, favorites }) => {
   return (
-    <div>
-      <div className="pokedex-header"></div>
-      {loading ? (
-        <div>Loading the beast...</div>
-      ) : (
-        <div className="pokedex-grid">
-          {pokemons &&
-            pokemons.map((pokemon, index) => {
-              return (
-                <Pokemon
-                  key={index}
-                  pokemon={pokemon}
-                  deletePokemon={deletePokemon}
-                />
-              );
-            })}
-        </div>
-      )}
+    <div className="pokedex-grid">
+      {pokemons.map((pokemon, index) => (
+        <Pokemon
+          key={index}
+          pokemon={pokemon}
+          deletePokemon={deletePokemon}
+          addFavorite={addFavorite}
+          isFavorite={favorites.some((fav) => fav.name === pokemon.name)}
+        />
+      ))}
     </div>
   );
 };
 
 export default Pokedex;
+
