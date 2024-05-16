@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { useState, /* useEffect */ } from "react";
+import { useState } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Searchbar from "./components/Searchbar";
 import Pokedex from "./components/Pokedex";
 import PokemonDetail from "./components/PokemonDetail";
 import Favorites from "./components/Favorites";
-/* import { fetchPokemonData } from "./api"; */
+import AddPokemon from "./components/AddPokemon";
 
 function App() {
   /* These lines are using the useState hook to initialize two state
@@ -19,12 +19,10 @@ function App() {
   const [search, setSearch] = useState("");
   const [lowerCaseSearch, setlowerCaseSearch] = useState("");
 
-  /* useEffect(() => {
-    fetchPokemonData(pokemons).then((data) => {
-      setPokemons(data);
-      setLoading(false);
-    });
-  }, []); */
+
+  const addPokemon = (pokemon) => {
+    setPokemons([...pokemons, pokemon]);
+  };
 
   const deletePokemon = (id) => {
 
@@ -47,9 +45,6 @@ function App() {
     }))
   };
 
-  /* const removeFavorite = (name) => {
-    setFavorites(favorites.filter((pokemon) => pokemon.name !== name));
-  }; */
 
   if (loading) {
     return <div><h1>Loading the beast ...</h1></div>;
@@ -92,6 +87,7 @@ function App() {
             }
           />
           <Route path="/pokemon/:name" element={<PokemonDetail />} />
+          <Route path="/add" element={<AddPokemon addPokemon={addPokemon} />} />
         </Routes>
       </div>
     </Router>

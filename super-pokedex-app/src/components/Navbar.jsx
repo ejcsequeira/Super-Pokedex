@@ -13,8 +13,9 @@ const Navbar = () => {
         />
       </div>
       <div className="main-container">
-        <Link to="/" className="navbar-link">Home</Link>
-        <Link to="/favorites" className="navbar-link">Favorites</Link>
+        <Link to="/" className="navbar-link navbar-button">Home</Link>
+        <Link to="/favorites" className="navbar-link navbar-button">Favorites</Link>
+        <Link to="/add" className="navbar-link navbar-button">Create the Beast</Link>
       </div>
     </div>
   );

@@ -3,8 +3,8 @@ body, html {
   padding: 0;
   height: 100%;
 }
- 
- #root{
+
+#root {
   background-image: url(/images/backgroundImg.png);
   background-size: cover;
   background-position: center;
@@ -13,9 +13,9 @@ body, html {
   align-items: center;
   height: 100%;
   margin: 20px;
- }
+}
 
- .App {
+.App {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -57,6 +57,26 @@ body, html {
 
 .main-container a:hover {
   text-decoration: underline;
+}
+
+.navbar-link {
+  background-color: #396BBA;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.navbar-button {
+  background-color: #396BBA;
+  color: #FFE031;
+}
+
+.navbar-button:hover {
+  background-color: #295997;
 }
 
 .searchbar-container {
@@ -233,4 +253,53 @@ body, html {
   cursor: pointer;
   background-color: #e74c3c;
   color: white;
+}
+
+.add-pokemon-container {
+  width: 90%;
+  max-width: 600px;
+  margin: 50px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 14px 45px rgba(0, 0, 0, 0.22), 0 18px 45px rgba(0, 0, 0, 0.22);
+}
+
+.add-pokemon-container h1 {
+  text-align: center;
+  color: #fe0065;
+}
+
+.add-pokemon-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-wrapper {
+  margin: 10px 0;
+}
+
+.input-wrapper label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 10px;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.add-pokemon-form button {
+  padding: 10px 20px;
+  background-color: #396BBA;
+  border: none;
+  border-radius: 10px;
+  color: #FFE031;
+  cursor: pointer;
+  margin-top: 20px;
+  align-self: center;
 }
