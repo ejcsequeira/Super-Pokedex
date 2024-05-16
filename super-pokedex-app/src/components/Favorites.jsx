@@ -1,30 +1,32 @@
 import React, { useState } from "react";
 import Pokemon from "./Pokemon";
 
-const Favorites = ({ favorites, setFavorites, removeFromFavorites, editFavoriteName, showEditPokemon }) => {
-  const [editdNames, setEditdNames] = useState({});
 
-  const handleInputChange = (id, newName) => {
-    const foundPokemon = favorites.find(favorite => favorite.id === id)
-    setEditdNames({ ...editdNames, [id]: newName });
-  };
-
-  const handleSaveName = (id) => {
-    if (editdNames[id]) {
-      editFavoriteName(id, editdNames[id]);
-      setEditdNames({ ...editdNames, [id]: "" });
-    }
-  };
-
+const Favorites = ({
+  favorites,
+  setFavorites,
+  showEditPokemon,
+  deletePokemon,
+  toggleFavorite,
+}) => {
+  
   return (
     <div className="favorites-page">
       <h2>Favorites</h2>
       <div className="favorites-grid">
-        {favorites.map((pokemon) => (
+        {favorites.map((pokemon) => {
+          return (
           <div key={pokemon.id} className="favorites-card">
-            <Pokemon favorites={favorites} setFavorites={setFavorites} pokemon={pokemon} showEditPokemon={showEditPokemon} />
+            <Pokemon
+              favorites={favorites}
+              setFavorites={setFavorites}
+              pokemon={pokemon}
+              deletePokemon={deletePokemon}              
+              showEditPokemon={showEditPokemon}
+              toggleFavorite={toggleFavorite}
+            />
           </div>
-        ))}
+)}        )}
       </div>
     </div>
   );

@@ -1,14 +1,12 @@
 import { singlePokemon } from "../api";
 
 const Searchbar = ({
-  search,
   setSearch,
   setPokemons,
   lowerCaseSearch,
   setlowerCaseSearch,
 }) => {
   const onChangeHandler = (e) => {
-    /* setSearch(e.target.value) */
     const newValue = e.target.value;
     setSearch(newValue);
     setlowerCaseSearch(newValue.toLowerCase());

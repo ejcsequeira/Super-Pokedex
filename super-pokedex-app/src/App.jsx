@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, /* useEffect */ } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Searchbar from "./components/Searchbar";
 import Pokedex from "./components/Pokedex";
 import PokemonDetail from "./components/PokemonDetail";
 import Favorites from "./components/Favorites";
-import { fetchPokemonData } from "./api";
+/* import { fetchPokemonData } from "./api"; */
 
 function App() {
   /* These lines are using the useState hook to initialize two state
@@ -18,35 +18,44 @@ function App() {
   const [pokemons, setPokemons] = useState([]);
   const [search, setSearch] = useState("");
   const [lowerCaseSearch, setlowerCaseSearch] = useState("");
-  const [favorites, setFavorites] = useState([]);
 
-/*   useEffect(() => {
+  /* useEffect(() => {
     fetchPokemonData(pokemons).then((data) => {
       setPokemons(data);
       setLoading(false);
     });
   }, []); */
 
-  const deletePokemon = (name) => {
-    setPokemons(pokemons.filter((pokemon) => pokemon.name !== name));
+  const deletePokemon = (id) => {
+
+    // delete pokemons from pokemons state
+    setPokemons(pokemons.filter((pokemon) => pokemon.id !== id));
   };
 
-  const addFavorite = (pokemon) => {
-    setFavorites((prevFavorites) => {
-      if (!prevFavorites.some((fav) => fav.name === pokemon.name)) {
-        return [...prevFavorites, pokemon];
+ 
+
+  const toggleFavorite = (pokemon) => {
+    setPokemons(pokemons.map(p => {
+      if(p.id === pokemon.id) {
+        return {
+          ...p,
+          isFavorite: !p.isFavorite
+        }
+      } else {
+        return p;
       }
-      return prevFavorites;
-    });
+    }))
   };
 
-  const removeFavorite = (name) => {
+  /* const removeFavorite = (name) => {
     setFavorites(favorites.filter((pokemon) => pokemon.name !== name));
-  };
+  }; */
 
   if (loading) {
     return <div><h1>Loading the beast ...</h1></div>;
   }
+
+  console.log(pokemons)
 
   return (
     <Router>
@@ -66,9 +75,8 @@ function App() {
               <Pokedex
                 pokemons={pokemons}
                 deletePokemon={deletePokemon}
-                addFavorite={addFavorite}
-                favorites={favorites}
                 showEditPokemon={false}
+                toggleFavorite={toggleFavorite}
               />
             }
           />
@@ -76,10 +84,10 @@ function App() {
             path="/favorites"
             element={
               <Favorites
-                favorites={favorites}
-                setFavorites={setFavorites}
-                removeFavorite={removeFavorite}
+                favorites={pokemons.filter(pokemon => pokemon.isFavorite)}   
                 showEditPokemon={true}
+                deletePokemon={deletePokemon}
+                toggleFavorite={toggleFavorite}
               />
             }
           />

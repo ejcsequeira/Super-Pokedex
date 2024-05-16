@@ -13,7 +13,7 @@ export const singlePokemon = async (pokemonName) => {
   try {
     const response = await fetch(`${Pokemon_API_URL}/${pokemonName}`);
     const pokemonData = await response.json();
-    return {...pokemonData, nickname: pokemonData.name};
+    return {...pokemonData, nickname: pokemonData.name, isFavorite: false};
   } catch (error) {
     console.log(error);
   }
