@@ -14,18 +14,18 @@ function App() {
   variables: loading, which indicates whether data is 
   currently being fetched, and pokemons,
   which will store an array of Pokémon data. */
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [pokemons, setPokemons] = useState([]);
   const [search, setSearch] = useState("");
   const [lowerCaseSearch, setlowerCaseSearch] = useState("");
   const [favorites, setFavorites] = useState([]);
 
-  useEffect(() => {
+/*   useEffect(() => {
     fetchPokemonData(pokemons).then((data) => {
       setPokemons(data);
       setLoading(false);
     });
-  }, []);
+  }, []); */
 
   const deletePokemon = (name) => {
     setPokemons(pokemons.filter((pokemon) => pokemon.name !== name));
@@ -68,6 +68,7 @@ function App() {
                 deletePokemon={deletePokemon}
                 addFavorite={addFavorite}
                 favorites={favorites}
+                showEditPokemon={false}
               />
             }
           />
@@ -76,7 +77,9 @@ function App() {
             element={
               <Favorites
                 favorites={favorites}
+                setFavorites={setFavorites}
                 removeFavorite={removeFavorite}
+                showEditPokemon={true}
               />
             }
           />

@@ -12,7 +12,8 @@ export const fetchPokemonData = async (arr) => {
 export const singlePokemon = async (pokemonName) => {
   try {
     const response = await fetch(`${Pokemon_API_URL}/${pokemonName}`);
-    return await response.json();
+    const pokemonData = await response.json();
+    return {...pokemonData, nickname: pokemonData.name};
   } catch (error) {
     console.log(error);
   }

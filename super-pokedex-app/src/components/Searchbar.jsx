@@ -16,6 +16,7 @@ const Searchbar = ({
 
   const onButtonClickHandler = () => {
     singlePokemon(lowerCaseSearch).then((data) => {
+      console.log(data)
       setPokemons((prevPokemons) => [...prevPokemons, data]);
     });
   };
