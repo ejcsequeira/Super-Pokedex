@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Pokemon = (props) => {
-  const { pokemon, deletePokemon } = props;
-
+const Pokemon = ({ pokemon, deletePokemon, addFavorite, isFavorite }) => {
   const handleDelete = () => {
     deletePokemon(pokemon.name);
+  };
+
+  const handleFavorite = () => {
+    addFavorite(pokemon);
   };
 
   return (
@@ -16,6 +18,9 @@ const Pokemon = (props) => {
       <div>{pokemon.name}</div>
       <button onClick={handleDelete} className="btn-delete">
         🗑
+      </button>
+      <button onClick={handleFavorite} className="btn-favorite">
+        {isFavorite ? "★" : "☆"}
       </button>
       <Link to={`/pokemon/${pokemon.name}`} className="btn-details">
         Details

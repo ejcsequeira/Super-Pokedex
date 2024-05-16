@@ -22,9 +22,9 @@ const PokemonDetail = () => {
     <div className="pokemon-detail">
       <h1>{pokemon.name}</h1>
       <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-      <p>Type: {pokemon.types[0].type.name}</p>
-      <p>Height: {pokemon.height}</p>
-      <p>Weight: {pokemon.weight}</p>
+      <h2><p>Type: {pokemon.types[0].type.name}</p></h2>
+      <h2><p>Height: {pokemon.height}</p></h2>
+      <h2><p>Weight: {pokemon.weight}</p></h2>
     </div>
   );
 };
