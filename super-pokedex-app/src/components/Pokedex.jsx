@@ -1,7 +1,7 @@
 import React from "react";
 import Pokemon from "./Pokemon";
 
-const Pokedex = ({ pokemons, deletePokemon, addFavorite, favorites, showEditPokemon }) => {
+const Pokedex = ({ pokemons, toggleFavorite, deletePokemon, favorites, showEditPokemon }) => {
   return (
     <div className="pokedex-grid">
       {pokemons.map((pokemon, index) => (
@@ -10,9 +10,8 @@ const Pokedex = ({ pokemons, deletePokemon, addFavorite, favorites, showEditPoke
           favorites={favorites}
           pokemon={pokemon}
           deletePokemon={deletePokemon}
-          addFavorite={addFavorite}
-          isFavorite={favorites.some((fav) => fav.name === pokemon.name)}
           showEditPokemon={showEditPokemon}
+          toggleFavorite={toggleFavorite}
         />
       ))}
     </div>

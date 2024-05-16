@@ -1,32 +1,39 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Pokemon = ({ favorites, setFavorites, pokemon, deletePokemon, addFavorite, isFavorite, showEditPokemon }) => {
+const Pokemon = ({
+  favorites,
+  setFavorites,
+  pokemon,
+  deletePokemon,
+  showEditPokemon,
+  toggleFavorite,
+}) => {
   const [input, setInput] = useState(pokemon.nickname);
 
   const handleInputChange = (e) => {
-    setInput(e.target.value)
-  }
+    setInput(e.target.value);
+  };
 
   const handleUpdateNickname = (id) => {
-    const updateFavorites = favorites.map(favorite => {
+    const updateFavorites = favorites.map((favorite) => {
       if (favorite.id === id) {
         return {
           ...favorite,
-          nickname: input
-        }
+          nickname: input,
+        };
       }
       return favorite;
-    })
-    setFavorites(updateFavorites)
-  }
+    });
+    setFavorites(updateFavorites);
+  };
 
   const handleDelete = () => {
-    deletePokemon(pokemon.name);
+    deletePokemon(pokemon.id);
   };
 
   const handleFavorite = () => {
-    addFavorite(pokemon);
+    toggleFavorite(pokemon);
   };
 
   return (
@@ -41,7 +48,7 @@ const Pokemon = ({ favorites, setFavorites, pokemon, deletePokemon, addFavorite,
           🗑
         </button>
         <button onClick={handleFavorite} className="btn-favorite">
-          {isFavorite ? "★" : "☆"}
+          {pokemon.isFavorite ? "★" : "☆"}
         </button>
         <Link to={`/pokemon/${pokemon.name}`} className="btn-details">
           Details
@@ -49,15 +56,8 @@ const Pokemon = ({ favorites, setFavorites, pokemon, deletePokemon, addFavorite,
       </div>
       {showEditPokemon && (
         <>
-          <input
-          type="text"
-          value={input}
-          onChange={handleInputChange}
-          />
+          <input type="text" value={input} onChange={handleInputChange} />
           <button onClick={() => handleUpdateNickname(pokemon.id)}>Save</button>
-          <button onClick={() => removeFromFavorites(pokemon.id)}>
-            Remove
-          </button>
         </>
       )}
     </>
