@@ -19,12 +19,12 @@ function App() {
   const [search, setSearch] = useState("");
   const [lowerCaseSearch, setlowerCaseSearch] = useState("");
 
-
+  //This function takes a new Pokémon and adds it to our list.
   const addPokemon = (pokemon) => {
-
     setPokemons([...pokemons, pokemon]);
   };
 
+  //This function removes a Pokémon from our list.
   const deletePokemon = (id) => {
 
     // delete pokemons from pokemons state
@@ -32,7 +32,7 @@ function App() {
   };
 
 
-
+  //This function lets us mark a Pokémon as a favorite or remove it from favorites.
   const toggleFavorite = (pokemon) => {
     setPokemons(pokemons.map(p => {
       if (p.id === pokemon.id) {
