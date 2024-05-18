@@ -5,6 +5,7 @@ import Pokemon from "./Pokemon";
 const Favorites = ({
   favorites,
   setFavorites,
+  updatePokemonNickname,
   showEditPokemon,
   deletePokemon,
   toggleFavorite,
@@ -24,6 +25,7 @@ const Favorites = ({
               deletePokemon={deletePokemon}              
               showEditPokemon={showEditPokemon}
               toggleFavorite={toggleFavorite}
+              updatePokemonNickname={updatePokemonNickname}
             />
           </div>
 )}        )}
