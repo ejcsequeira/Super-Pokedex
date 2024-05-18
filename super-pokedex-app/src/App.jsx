@@ -10,6 +10,7 @@ import Favorites from "./components/Favorites";
 import AddPokemon from "./components/AddPokemon";
 
 function App() {
+  
   /* These lines are using the useState hook to initialize two state
   variables: loading, which indicates whether data is 
   currently being fetched, and pokemons,
@@ -31,9 +32,9 @@ function App() {
     setPokemons(pokemons.filter((pokemon) => pokemon.id !== id));
   };
 
-
+  //antigo a funcionar
   //This function lets us mark a Pokémon as a favorite or remove it from favorites.
-  const toggleFavorite = (pokemon) => {
+  /* const toggleFavorite = (pokemon) => {
     setPokemons(pokemons.map(p => {
       if (p.id === pokemon.id) {
         return {
@@ -44,6 +45,15 @@ function App() {
         return p;
       }
     }))
+  }; */
+
+  //novo
+  const toggleFavorite = (pokemon) => {
+    setPokemons(pokemons.map(p => p.id === pokemon.id ? { ...p, isFavorite: !p.isFavorite } : p));
+  };
+  //novo
+  const updatePokemonNickname = (id, nickname) => {
+    setPokemons(pokemons.map(p => p.id === id ? { ...p, nickname } : p));
   };
 
 
@@ -73,6 +83,7 @@ function App() {
                 deletePokemon={deletePokemon}
                 showEditPokemon={false}
                 toggleFavorite={toggleFavorite}
+                updatePokemonNickname={updatePokemonNickname}
               />
             }
           />
@@ -84,6 +95,7 @@ function App() {
                 showEditPokemon={true}
                 deletePokemon={deletePokemon}
                 toggleFavorite={toggleFavorite}
+                updatePokemonNickname={updatePokemonNickname} //novo
               />
             }
           />

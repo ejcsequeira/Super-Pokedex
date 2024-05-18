@@ -8,6 +8,7 @@ const Pokemon = ({
   deletePokemon,
   showEditPokemon,
   toggleFavorite,
+  updatePokemonNickname,
 }) => {
   const [input, setInput] = useState(pokemon.nickname);
 
@@ -15,7 +16,8 @@ const Pokemon = ({
     setInput(e.target.value);
   };
 
-  const handleUpdateNickname = (id) => {
+  //antigo a funcionar
+  /* const handleUpdateNickname = (id) => {
     const updateFavorites = favorites.map((favorite) => {
       if (favorite.id === id) {
         return {
@@ -26,6 +28,11 @@ const Pokemon = ({
       return favorite;
     });
     setFavorites(updateFavorites);
+  }; */
+
+  //novo
+  const handleUpdateNickname = () => {
+    updatePokemonNickname(pokemon.id, input);
   };
 
   const handleDelete = () => {
@@ -59,7 +66,8 @@ const Pokemon = ({
       {showEditPokemon && (
         <>
           <input type="text" value={input} onChange={handleInputChange} />
-          <button onClick={() => handleUpdateNickname(pokemon.id)}>Save</button>
+          {/* <button onClick={() => handleUpdateNickname(pokemon.id)}>Edit</button> antigo */}
+          <button onClick={handleUpdateNickname}>Edit</button>
         </>
       )}
     </>
