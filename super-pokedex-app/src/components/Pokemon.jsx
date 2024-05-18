@@ -43,7 +43,7 @@ const Pokemon = ({
     toggleFavorite(pokemon);
   };
 
-  console.log(pokemon)
+  console.log(pokemon);
 
   return (
     <>
@@ -53,22 +53,27 @@ const Pokemon = ({
         </div>
         <div>Name: {pokemon.name}</div>
         <div>Nickname: {pokemon.nickname}</div>
-        <button onClick={handleDelete} className="btn-delete">
+        <button onClick={handleDelete} className="btn">
           🗑
         </button>
-        <button onClick={handleFavorite} className="btn-favorite">
+        <button onClick={handleFavorite} className="btn">
           {pokemon.isFavorite ? "★" : "☆"}
         </button>
-        <Link  to={`/pokemon/${pokemon.name}`} state={{poke: pokemon}} className="btn-details">
+        <Link
+          to={`/pokemon/${pokemon.name}`}
+          state={{ poke: pokemon }}
+          className="btn"
+        >
           Details
         </Link>
       </div>
       {showEditPokemon && (
-        <>
+        <div className="edit-nickname-container">
           <input type="text" value={input} onChange={handleInputChange} />
-          {/* <button onClick={() => handleUpdateNickname(pokemon.id)}>Edit</button> antigo */}
-          <button onClick={handleUpdateNickname}>Edit</button>
-        </>
+          <button onClick={handleUpdateNickname} className="btn">
+            Edit
+          </button>
+        </div>
       )}
     </>
   );

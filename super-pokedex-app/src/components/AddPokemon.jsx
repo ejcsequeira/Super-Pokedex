@@ -55,9 +55,9 @@ export default function AddPokemon({ addPokemon }) {
   };
 
   return (
-    <div>
+    <div className="add-pokemon-container">
       <h1>Add New Pokémon</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="add-pokemon-form">
         <div className="input-wrapper">
           <label>Name:</label>
           <input type="text" value={name} onChange={handleNameChange} />
@@ -78,8 +78,8 @@ export default function AddPokemon({ addPokemon }) {
           <label>Weight:</label>
           <input type="number" value={weight} onChange={handleWeightChange} />
         </div>
-        <button type="submit" className="navbar-link navbar-button">Add Pokémon</button>
+        <button type="submit" className="btn">Add Pokémon</button>
       </form>
     </div>
   );
-}
+};

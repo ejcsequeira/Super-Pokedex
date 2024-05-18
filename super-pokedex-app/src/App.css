@@ -2,6 +2,7 @@ body, html {
   margin: 0;
   padding: 0;
   height: 100%;
+  width: 100%;
 }
 
 #root {
@@ -11,8 +12,10 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  margin: 20px;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .App {
@@ -23,20 +26,24 @@ body, html {
   width: 90%;
   max-width: 1200px;
   padding: 10px;
-  margin: 50px auto;
-  background-color: #fe0065;
+  margin: 20px auto;
+  background-color: rgba(254, 0, 101, 0.9); /* Semi-transparent background */
   border-radius: 10px;
   box-shadow: 0 14px 45px rgba(0, 0, 0, 0.22), 0 18px 45px rgba(0, 0, 0, 0.22);
-  
+  overflow: hidden; /* Prevent content overflow */
 }
 
 .navbar-container {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   padding: 10px 0;
   background-color: #fe0065;
+}
+
+.header-container {
+  text-align: center;
 }
 
 .navbar-img {
@@ -45,52 +52,46 @@ body, html {
 
 .main-container {
   display: flex;
-  gap: 20px;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
 }
 
 .main-container a {
   color: white;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
-}
-
-.main-container a:hover {
-  text-decoration: underline;
 }
 
 .navbar-link {
   background-color: #396BBA;
   color: white;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
   padding: 10px 20px;
   border-radius: 5px;
   transition: background-color 0.3s;
 }
 
-.navbar-button {
-  background-color: #396BBA;
-  color: #FFE031;
-}
-
-.navbar-button:hover {
+.navbar-link:hover {
   background-color: #295997;
 }
 
 .searchbar-container {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   max-width: 600px;
   margin: 20px 0;
-  padding: 0 20px;
-  align-items: center;
 }
 
 .searchbar {
-  flex: 1;
-  margin-right: 10px;
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 .searchbar input {
@@ -111,20 +112,12 @@ body, html {
   cursor: pointer;
 }
 
-.pokedex-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-}
-
 .pokedex-grid {
   display: grid;
   gap: 10px;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   width: 100%;
-  background-color: #bff9ff;
+  background-color: rgba(191, 249, 255, 0.9);
   padding: 10px;
   box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
@@ -143,25 +136,18 @@ body, html {
   height: 100px;
 }
 
-.btn-delete, .btn-details {
+.btn {
   margin-top: 10px;
   padding: 5px 10px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  background-color: #396BBA;
+  color: #FFE031;
 }
 
-.btn-delete {
-  background-color: #e74c3c;
-  color: white;
-}
-
-.btn-details {
-  background-color: #3498db;
-  color: white;
-  text-decoration: none;
-  display: inline-block;
-  margin-left: 5px;
+.btn:hover {
+  background-color: #295997;
 }
 
 .detail-view {
@@ -202,22 +188,12 @@ body, html {
   font-size: 10px;
 }
 
-.btn-favorite {
-  background-color: #f39c12;
-  border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
-  margin-top: 10px;
-  color: white;
-  cursor: pointer;
-}
-
 .favorites-page {
   width: 90%;
   max-width: 1200px;
   padding: 20px;
-  margin: 50px auto;
-  background-color: #fff;
+  margin: 20px auto;
+  background-color: rgba(255, 255, 255, 0.9);
   border-radius: 10px;
   box-shadow: 0 14px 45px rgba(0, 0, 0, 0.22), 0 18px 45px rgba(0, 0, 0, 0.22);
 }
@@ -258,8 +234,8 @@ body, html {
 .add-pokemon-container {
   width: 90%;
   max-width: 600px;
-  margin: 50px auto;
-  background-color: #fff;
+  margin: 20px auto;
+  background-color: rgba(255, 255, 255, 0.9);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 14px 45px rgba(0, 0, 0, 0.22), 0 18px 45px rgba(0, 0, 0, 0.22);
@@ -302,4 +278,37 @@ body, html {
   cursor: pointer;
   margin-top: 20px;
   align-self: center;
+}
+
+@media (max-width: 768px) {
+  .navbar-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar-img {
+    width: 120px;
+  }
+
+  .main-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .App {
+    width: 95%;
+    padding: 10px;
+    margin: 10px auto;
+  }
+
+  .searchbar-container {
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  .favorites-page, .add-pokemon-container {
+    width: 95%;
+    padding: 10px;
+    margin: 10px auto;
+  }
 }
